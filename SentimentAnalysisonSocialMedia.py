@@ -1,14 +1,3 @@
-# Day 4 Sentiment Analysis on Social Media
-
-# pip install pandas scikit-learn matplotlib wordcloud tensorflow
-
-# Algorithm: Naive Bayes
-# Explanation: Naive Bayes classifies text (e.g., tweets) into positive or negative sentiments
-# based on word frequencies.
-# Improvements: Use more sophisticated models like LSTM for better understanding of
-# context in text.
-
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 
 texts = ['I love this!', 'This is terrible.', 'Absolutely amazing!', 'Not good.', 'Pretty decent.', 'Worst experience ever.']
@@ -17,7 +6,7 @@ sentiments = [1, 0, 1, 0, 1, 0]
 data = pd.DataFrame({'Text': texts, 'Sentiment': sentiments})
 print("Synthetic social media sentiment data created.")
 
-# ------------------ Sentiment Analysis ------------------
+
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -36,7 +25,6 @@ predictions = model.predict(X_test)
 accuracy = accuracy_score(y_test, predictions)
 print(f'Sentiment analysis accuracy: {accuracy:.2f}')
 
-# ------------------ Plots ------------------
 import matplotlib.pyplot as plt
 
 # Confusion Matrix
@@ -75,7 +63,6 @@ plt.title('Negative Sentiments')
 plt.axis('off')
 plt.show()
 
-# ------------------ Improved Model ------------------
 # pip install numpy==1.23.5
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
