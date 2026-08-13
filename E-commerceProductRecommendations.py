@@ -1,8 +1,4 @@
-# Day 4 E-commerce Product Recommendations
 
-# pip install pandas numpy scikit-learn seaborn matplotlib plotly
-
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 import numpy as np
 
@@ -14,7 +10,6 @@ data = pd.DataFrame({'UserID': users, 'ProductID': products, 'Rating': ratings})
 print("Synthetic e-commerce recommendation data created.")
 
 
-# ------------------ E-commerce Product Recommendations ------------------
 from sklearn.model_selection import train_test_split
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -22,7 +17,6 @@ user_product_matrix = data.pivot_table(index='UserID', columns='ProductID', valu
 similarity_matrix = cosine_similarity(user_product_matrix)
 print("E-commerce product recommendation system built.")
 
-# ------------------ Predictions ------------------
 def predict_rating(user_id, product_id, user_product_matrix, similarity_matrix):
     # Get the index of the user and product
     user_index = user_product_matrix.index.get_loc(user_id)
@@ -51,7 +45,6 @@ product_id = 'Product_1'
 predicted_rating = predict_rating(user_id, product_id, user_product_matrix, similarity_matrix)
 print(f'Predicted rating for {user_id} on {product_id}: {predicted_rating}')
 
-# ------------------ Recommendations ------------------
 def recommend_products(user_id, user_product_matrix, similarity_matrix, top_n=5):
     # Get the index of the user
     user_index = user_product_matrix.index.get_loc(user_id)
@@ -82,7 +75,6 @@ user_id = 'User_10'
 recommended_products = recommend_products(user_id, user_product_matrix, similarity_matrix, top_n=3)
 print(f'Recommended products for {user_id}: {recommended_products}')
 
-# ------------------ Plots ------------------
 import seaborn as sns
 import matplotlib.pyplot as plt
 
