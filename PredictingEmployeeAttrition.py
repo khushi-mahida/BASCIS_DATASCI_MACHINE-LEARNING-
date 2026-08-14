@@ -1,9 +1,4 @@
-# Day 6 - Predicting Employee Attrition
 
-# pip install pandas scikit-learn matplotlib wordcloud plotly seaborn statsmodels numpy
-
-
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 import numpy as np
 
@@ -17,7 +12,6 @@ data = pd.DataFrame({'Age': age, 'Salary': salary, 'YearsAtCompany': years_at_co
 print("Synthetic employee attrition data created.")
 
 
-# ------------------ Modeling ------------------
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -33,7 +27,6 @@ predictions = model.predict(X_test)
 accuracy = accuracy_score(y_test, predictions)
 print(f'Employee attrition prediction accuracy: {accuracy:.2f}')
 
-# ------------------ Visualize the Decision Tree ------------------
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
 
@@ -42,7 +35,7 @@ plot_tree(model, feature_names=X.columns, class_names=['No Attrition', 'Attritio
 plt.show()
 
 
-# ------------------ Feature Importance ------------------
+
 import matplotlib.pyplot as plt
 
 feature_importance = model.feature_importances_
@@ -55,7 +48,7 @@ plt.title('Feature Importance')
 
 plt.show()
 
-# ------------------ Predictions ------------------
+
 def predict_attrition(age, salary, years_at_company, model):
     input_data = pd.DataFrame({'Age': [age], 'Salary': [salary], 'YearsAtCompany': [years_at_company]})
     prediction = model.predict(input_data)[0]
@@ -68,7 +61,7 @@ years_at_company = 10
 prediction = predict_attrition(age, salary, years_at_company, model)
 print(f'Predicted attrition for an employee with age {age}, salary {salary}, and {years_at_company} years at the company: {prediction}')
 
-# ------------------ Recommendations ------------------
+
 def recommend_training(age, salary, years_at_company, model):
     input_data = pd.DataFrame({'Age': [age], 'Salary': [salary], 'YearsAtCompany': [years_at_company]})
     prediction = model.predict(input_data)[0]
