@@ -1,7 +1,4 @@
-# Day 7 - Real Estate Price Prediction
 
-# pip install scikit-learn pandas matplotlib numpy seaborn
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 import numpy as np
 
@@ -13,7 +10,6 @@ price = size * np.random.randint(100, 500, size=1000)
 data = pd.DataFrame({'Size': size, 'Location': location, 'Price': price})
 print("Synthetic real estate data created.")
 
-# ------------------ Real Estate Price Prediction ------------------
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -31,7 +27,7 @@ predictions = model.predict(X_test)
 mse = mean_squared_error(y_test, predictions)
 print(f'Real estate price prediction MSE: {mse:.2f}')
 
-# ------------------ Feature Importance ------------------
+
 import matplotlib.pyplot as plt
 
 feature_importance = model.coef_
@@ -45,7 +41,6 @@ plt.title('Feature Importance')
 plt.xticks(rotation=45)
 plt.show()
 
-# ------------------ Predictions ------------------
 def predict_price(size, location):
     input_data = pd.DataFrame({'Size': [size], 'Location': [location]})
     input_data = pd.get_dummies(input_data, columns=['Location'], drop_first=True)
@@ -68,7 +63,6 @@ predicted_price = predict_price(size, location)
 
 print(f'The predicted price for a property of size {size} sqft in {location} is ${predicted_price[0]:.2f}')
 
-# ------------------ Plotting Predictions ------------------
 
 import matplotlib.pyplot as plt
 
@@ -119,7 +113,6 @@ plt.legend()
 
 plt.show()
 
-# ------------------ Real Estate Price Prediction with Gradient Boosting ------------------
 from sklearn.ensemble import GradientBoostingRegressor
 
 model = GradientBoostingRegressor()
@@ -129,7 +122,6 @@ predictions = model.predict(X_test)
 mse = mean_squared_error(y_test, predictions)
 print(f'Real estate price prediction MSE: {mse:.2f}')
 
-# ------------------ Feature Importance ------------------
 import matplotlib.pyplot as plt
 
 feature_importance = model.feature_importances_
@@ -143,7 +135,6 @@ plt.title('Feature Importance')
 plt.xticks(rotation=45)
 plt.show()
 
-# ------------------ Predictions ------------------
 
 # Example usage
 size = 2000
@@ -152,8 +143,6 @@ predicted_price = predict_price(size, location)
 
 print(f'The predicted price for a property of size {size} sqft in {location} is ${predicted_price[0]:.2f}')
 
-# ------------------ Plotting Predictions ------------------
-# Generate synthetic data for plotting
 size = np.linspace(500, 4000, 100).tolist()
 location = ['Location_5'] * 100
 price = predict_price(size, location)
