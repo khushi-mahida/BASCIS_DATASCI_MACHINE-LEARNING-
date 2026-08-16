@@ -1,25 +1,3 @@
-# Day 8 Cybersecurity Threat Detection Model: Isolation Forest for anomaly detection
-
-# pip install scikit-learn pandas matplotlib seaborn numpy
-
-
-# The data represents three features:
-#
-# PacketSize
-# ConnectionDuration
-# BytesTransferred
-
-# Normal Traffic       Anomalous Traffic
-#        |                     |
-#        |                     |
-#        |                     |
-#       / \                   / \
-#      /   \                 /   \
-#     /     \               /     \
-# ---/-------\-------------/-------\---
-#   50   100   150       150   200   250
-
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 import numpy as np
 
@@ -35,17 +13,6 @@ df = pd.DataFrame(data, columns=['PacketSize', 'ConnectionDuration', 'BytesTrans
 df['Anomaly'] = labels
 print("Synthetic cybersecurity threat data created.")
 
-
-# ------------------ Modeling ------------------
-
-# Root
-#          /    \
-#         /      \
-#     Feature1  Feature2
-#      /    \    /    \
-#     <     >   <     >
-#    /  \           /  \
-#  Normal        Anomaly
 
 # The algorithm assumes that anomalies are rare and different. Thus, anomalies require fewer partitions to be isolated,
 # resulting in shorter paths in the tree.
@@ -76,13 +43,10 @@ print(f'Recall: {recall:.2f}')
 print(f'F1-score: {f1:.2f}')
 
 
-
-# ------------------ Feature Importance ------------------
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Assuming 'model' is your trained Isolation Forest model
-# and 'X' is your feature matrix
+
 
 # Calculate feature importance
 n_features = X.shape[1]
@@ -97,7 +61,7 @@ feature_importance = feature_importance / np.sum(feature_importance)
 # Get feature names
 features = X.columns
 
-# Plot feature importance
+
 plt.figure(figsize=(10, 6))
 plt.bar(features, feature_importance)
 plt.xlabel('Features')
@@ -107,12 +71,11 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-# Print feature importance
+
 for feature, importance in zip(features, feature_importance):
     print(f"{feature}: {importance:.4f}")
 
 
-# ------------------ Predictions ------------------
 def predict_anomaly(packet_size, connection_duration, bytes_transferred, model):
     input_data = pd.DataFrame({'PacketSize': [packet_size],
                                'ConnectionDuration': [connection_duration],
@@ -150,7 +113,6 @@ bytes_transferred = 8000
 recommendation = recommend_action(packet_size, connection_duration, bytes_transferred, model)
 print(recommendation)
 
-# ------------------- analyse multiple values -------------------
 import numpy as np
 import pandas as pd
 
@@ -182,7 +144,6 @@ normal_examples = generate_normal_traffic_examples(10, 150, 100, 100)
 # Test examples
 results = test_examples(normal_examples, model)
 
-# Print results
 for i, (example, result) in enumerate(zip(normal_examples, results)):
     print(f"Example {i + 1}:")
     print(f"  Packet Size: {example['PacketSize']:.2f}")
@@ -196,7 +157,6 @@ normal_percentage = (results == 1).mean() * 100
 print(f"Percentage of traffic classified as normal: {normal_percentage:.2f}%")
 
 
-# ------------------ Additional Visualizations ------------------
 
 # 1. Scatter plot of normal vs anomalous traffic
 plt.figure(figsize=(12, 8))
@@ -223,7 +183,7 @@ for i, feature in enumerate(features):
 plt.tight_layout()
 plt.show()
 
-# 3. Correlation heatmap
+# 3. Correlation heat map 
 import seaborn as sns
 plt.figure(figsize=(10, 8))
 correlation_matrix = df[['PacketSize', 'ConnectionDuration', 'BytesTransferred', 'Anomaly']].corr()
@@ -250,7 +210,7 @@ plt.title('Receiver Operating Characteristic (ROC) Curve')
 plt.legend(loc="lower right")
 plt.show()
 
-# 5. Decision boundary visualization (2D projection)
+# 5. Decision boundary visualization 
 from sklearn.decomposition import PCA
 
 pca = PCA(n_components=2)
