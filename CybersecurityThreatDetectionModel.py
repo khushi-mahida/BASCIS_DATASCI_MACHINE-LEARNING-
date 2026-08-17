@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-np.random.seed(42)
+np.random.seed(56)
 num_samples = 1000
 normal_traffic = np.random.normal(loc=100, scale=20, size=(num_samples, 3))
 anomalous_traffic = np.random.normal(loc=200, scale=50, size=(int(num_samples * 0.1), 3))
