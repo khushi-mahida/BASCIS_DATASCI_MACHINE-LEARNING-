@@ -1,33 +1,23 @@
-# Day 10 - Energy Consumption Forecasting
 
-# pip install statsmodels matplotlib pandas numpy prophet pmdarima
-# pip install --force-reinstall numpy==2.0.0 #if you get an error with statsmodels
-# ------------------ Synthetic Data ------------------
 import pandas as pd
 import numpy as np
 
-# Set random seed for reproducibility
-np.random.seed(42)
+np.random.seed(45)
 
-# Generate dates
 dates = pd.date_range(start='1/1/2020', periods=100)
 
-# Generate consumption data with a trend and seasonality
 trend = np.linspace(100, 500, 100)  # Linear trend
 seasonality = 50 * np.sin(np.linspace(0, 3 * np.pi, 100))  # Seasonal pattern
 noise = np.random.normal(0, 20, 100)  # Random noise
 
-# Combine trend, seasonality, and noise
 consumption = trend + seasonality + noise
 consumption = np.clip(consumption, 100, 500)  # Ensure values are within a realistic range
 
-# Create DataFrame
 data = pd.DataFrame({'Date': dates, 'Consumption': consumption})
 print("Synthetic energy consumption data with real-world patterns created.")
 
 
 
-# ------------------ Plot ------------------
 import matplotlib.pyplot as plt
 
 plt.plot(data['Date'], data['Consumption'])
@@ -49,7 +39,6 @@ model_fit = model.fit()
 forecast = model_fit.forecast(steps=10)
 
 
-# ------------------ Plot ------------------
 plt.plot(data['Date'], data['Consumption'], label='Consumption')
 plt.plot(pd.date_range(start=data['Date'].iloc[-1], periods=10, freq='D'), forecast, label='Forecast')
 plt.xlabel('Date')
@@ -59,7 +48,6 @@ plt.legend()
 plt.show()
 
 
-# ------------------ Improved Model ------------------
 # The Exponential Smoothing model is an improvement over the ARIMA model for this specific dataset
 # because it can handle both trend and seasonality in the data.
 # The ARIMA model used previously was configured with a specific order that may not capture the
@@ -87,7 +75,7 @@ plt.show()
 
 
 
-# ------------------ Forecasting with Alternative models ------------------
+# Forecasting with Alternative models 
 import numpy as np
 np.float_ = np.float64
 from prophet import Prophet
